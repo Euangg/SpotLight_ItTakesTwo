@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://com5pdtauulew"]
+[gd_scene load_steps=12 format=3 uid="uid://com5pdtauulew"]
 
 [ext_resource type="Script" uid="uid://c1ffmpihtx3ss" path="res://character.gd" id="1_7ig0a"]
 [ext_resource type="Texture2D" uid="uid://d065c0fuu5mx7" path="res://cha_full.png" id="1_oolk3"]
@@ -91,22 +91,60 @@ tracks/0/keys = {
 "values": [8]
 }
 
+[sub_resource type="Animation" id="Animation_e24yd"]
+resource_name = "attack"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_5gddd"]
+resource_name = "hurt"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_atbvg"]
 _data = {
 &"RESET": SubResource("Animation_7ig0a"),
+&"attack": SubResource("Animation_e24yd"),
 &"fall": SubResource("Animation_atbvg"),
+&"hurt": SubResource("Animation_5gddd"),
 &"idle": SubResource("Animation_oolk3"),
 &"rise": SubResource("Animation_cxxw8"),
 &"run": SubResource("Animation_lcuhw")
 }
 
 [node name="Character" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_7ig0a")
 input_w = &"w"
 input_s = &"s"
 input_a = &"a"
 input_d = &"d"
+input_j = &"j"
 
 [node name="Graphic" type="Node2D" parent="."]
 
@@ -126,3 +164,6 @@ shape = SubResource("RectangleShape2D_oolk3")
 libraries = {
 &"": SubResource("AnimationLibrary_atbvg")
 }
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
