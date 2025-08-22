@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://com5pdtauulew"]
+[gd_scene load_steps=13 format=3 uid="uid://com5pdtauulew"]
 
 [ext_resource type="Script" uid="uid://c1ffmpihtx3ss" path="res://character.gd" id="1_7ig0a"]
-[ext_resource type="Texture2D" uid="uid://few5vbwtfytk" path="res://assets/1.png" id="2_7ig0a"]
+[ext_resource type="Texture2D" uid="uid://yohpb8t8ub4k" path="res://assets/cha_2.png" id="2_lcuhw"]
+[ext_resource type="AudioStream" uid="uid://ch8et1werall1" path="res://assets/sfx/run.mp3" id="3_lcuhw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oolk3"]
 size = Vector2(12, 43)
@@ -35,7 +36,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [16, 17, 18]
+"values": [12, 13, 14]
 }
 
 [sub_resource type="Animation" id="Animation_atbvg"]
@@ -71,7 +72,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [12]
+"values": [11]
 }
 
 [sub_resource type="Animation" id="Animation_oolk3"]
@@ -151,9 +152,9 @@ input_j = &"j"
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphic"]
 position = Vector2(1, -26)
-texture = ExtResource("2_7ig0a")
+texture = ExtResource("2_lcuhw")
 hframes = 4
-vframes = 3
+vframes = 4
 region_rect = Rect2(0, 0, 224, 280)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -168,3 +169,8 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SFX_Run" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lcuhw")
+volume_db = 10.0
+pitch_scale = 3.0

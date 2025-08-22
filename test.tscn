@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8s0xfakg8lfh"]
+[gd_scene load_steps=4 format=3 uid="uid://c8s0xfakg8lfh"]
 
 [ext_resource type="PackedScene" uid="uid://com5pdtauulew" path="res://Character.tscn" id="1_37kl0"]
+[ext_resource type="Texture2D" uid="uid://byxrtjs4thf1r" path="res://assets/cha_1.png" id="2_8uh7m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
 size = Vector2(487.5, 20)
@@ -9,6 +10,9 @@ size = Vector2(487.5, 20)
 
 [node name="Character" parent="." instance=ExtResource("1_37kl0")]
 position = Vector2(22, 59)
+
+[node name="Sprite2D" parent="Character/Graphic" index="0"]
+texture = ExtResource("2_8uh7m")
 
 [node name="Character2" parent="." instance=ExtResource("1_37kl0")]
 position = Vector2(746, 65)
@@ -96,3 +100,5 @@ one_way_collision = true
 position = Vector2(96, 218)
 shape = SubResource("RectangleShape2D_8uh7m")
 one_way_collision = true
+
+[editable path="Character"]

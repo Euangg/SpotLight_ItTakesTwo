@@ -30,6 +30,7 @@ var f_:Vector2=Vector2.ZERO
 @onready var graphic: Node2D = $Graphic
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
+@onready var sfx_run: AudioStreamPlayer2D = $SFX_Run
 
 func _physics_process(delta: float) -> void:
 	var isOnFloor=is_on_floor()
@@ -76,11 +77,14 @@ func _physics_process(delta: float) -> void:
 	#2.状态切换
 	if nextState==state_:pass
 	else:
+		match state_:
+			State.RUN:sfx_run.stop()
 		match  nextState:
 			State.IDLE:
 				animation_player.play("idle")
 			State.RUN:
 				animation_player.play("run")
+				sfx_run.play()
 			State.RISE:
 				animation_player.play("rise")
 			State.FALL:
