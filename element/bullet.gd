@@ -4,7 +4,9 @@ extends Area2D
 const SFX_HIT = preload("res://sfx/sfx_hit.tscn")
 
 var velocity:Vector2
-var from:Node
+var from:Player
+var stunTime:float
+var power:float
 
 func _ready() -> void:
 	pass
@@ -20,7 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 			var player:Player=body
 			player.animation_player.play("hurt")
 			player.hurtNum_+=1
-			player.timer.start(0.15)
-			player.f_=10000*velocity.normalized()
+			player.timerStun.start(stunTime)
+			player.f_=power*velocity.normalized()
 			var sfx=SFX_HIT.instantiate()
 			player.add_child(sfx)

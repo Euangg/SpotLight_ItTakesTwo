@@ -167,7 +167,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_atbvg")
 }
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer_Stun" type="Timer" parent="."]
 one_shot = true
 
 [node name="SFX_Run" type="AudioStreamPlayer2D" parent="."]

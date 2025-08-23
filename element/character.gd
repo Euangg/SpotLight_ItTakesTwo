@@ -25,6 +25,9 @@ var skyJumpNum_:int=0
 var f_:Vector2=Vector2.ZERO
 var life_:int=3
 var spawnPos_:Vector2
+var atkCd_:float=0.4
+var atkStunTime_:float=0.15
+var atkPower_:float=10000
 @export var input_w:StringName
 @export var input_s:StringName
 @export var input_a:StringName
@@ -34,7 +37,7 @@ var spawnPos_:Vector2
 
 @onready var graphic: Node2D = $Graphic
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var timer: Timer = $Timer
+@onready var timerStun: Timer =$Timer_Stun
 @onready var sfx_run: AudioStreamPlayer2D = $SFX_Run
 
 func _ready() -> void:
@@ -77,7 +80,7 @@ func _physics_process(delta: float) -> void:
 					if velocity.y>0:nextState=State.FALL
 					elif velocity.y<0:nextState=State.RISE
 		State.HURT:
-			if timer.is_stopped():
+			if timerStun.is_stopped():
 				skyJumpNum_=1
 				if velocity.y:nextState=State.FALL
 				else :nextState=State.IDLE
@@ -101,10 +104,12 @@ func _physics_process(delta: float) -> void:
 			State.FALL:
 				animation_player.play("fall")
 			State.ATTACK:
-				animation_player.play("attack")
+				animation_player.play("attack",-1,0.4/atkCd_)
 				var b=BULLET.instantiate()
 				b.global_position=global_position-Vector2(0,25)
 				b.from=self
+				b.stunTime=atkStunTime_
+				b.power=atkPower_
 				b.velocity=Vector2.RIGHT*direction_*800
 				b.scale.x=b.scale.x*direction_
 				Global.nodeAmmo.add_child(b)
