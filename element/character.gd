@@ -1,6 +1,6 @@
 class_name Player
 extends CharacterBody2D
-const BULLET = preload("res://element/Bullet.tscn")
+const BULLET_FORK = preload("res://element/Bullet/Bullet_Fork.tscn")
 const SFX_SHOOT = preload("res://sfx/sfx_shoot.tscn")
 const SFX_JUMP = preload("res://sfx/sfx_jump.tscn")
 const SFX_AWAKE = preload("res://sfx/sfx_awake.tscn")
@@ -50,6 +50,10 @@ var hitModulate=0xffc2c2
 @onready var timerStun: Timer =$Timer_Stun
 @onready var sfx_run: AudioStreamPlayer2D = $SFX_Run
 @onready var marker_blood: Marker2D = $Marker2D_Blood
+@onready var timer_starbuck: Timer = $Timer_Starbuck
+@onready var timer_crab: Timer = $Timer_Crab
+@onready var timer_wallace: Timer = $Timer_Wallace
+@onready var particle_wallace: GPUParticles2D = $Graphic/Particle_Wallace
 
 func _ready() -> void:
 	match id:
@@ -142,8 +146,9 @@ func _physics_process(delta: float) -> void:
 			State.FALL:
 				animation_player.play("fall")
 			State.ATTACK:
-				animation_player.play("attack",-1,0.4/atkCd_)
-				var b=BULLET.instantiate()
+				var buff=1 if timer_starbuck.is_stopped() else 1.3
+				animation_player.play("attack",-1,0.4/atkCd_*buff)
+				var b=BULLET_FORK.instantiate()
 				b.global_position=global_position-Vector2(0,25)
 				b.from=self
 				b.stunTime=atkStunTime_
@@ -161,15 +166,16 @@ func _physics_process(delta: float) -> void:
 	if state_==State.HURT:
 		velocity+=f_*delta
 	else:
+		var buff=1 if timer_wallace.is_stopped() else 1.3
 		match state_:
 			State.IDLE:
 				velocity.x=0
 				if Input.is_action_just_pressed(input_w):Jump()
 			State.RUN:
-				velocity.x=inputX*speedRun
+				velocity.x=inputX*speedRun*buff
 				if Input.is_action_just_pressed(input_w):Jump()
 			State.RISE:
-				velocity.x=inputX*speedRun
+				velocity.x=inputX*speedRun*buff
 				if Input.is_action_just_pressed(input_w):
 					if skyJumpNum_>0:
 						skyJumpNum_=0
@@ -178,7 +184,7 @@ func _physics_process(delta: float) -> void:
 						velocity.y=-400
 						showGhost=true
 			State.FALL:
-				velocity.x=inputX*speedRun
+				velocity.x=inputX*speedRun*buff
 				if Input.is_action_just_pressed(input_w):
 					if skyJumpNum_>0:
 						skyJumpNum_=0
@@ -188,7 +194,7 @@ func _physics_process(delta: float) -> void:
 						showGhost=true
 			State.ATTACK:
 				if isOnFloor&&Input.is_action_just_pressed(input_w):Jump()
-				velocity.x=inputX*speedRun
+				velocity.x=inputX*speedRun*buff
 		if not is_zero_approx(inputX):
 			direction_=Direction.LEFT if inputX<0 else Direction.RIGHT
 		
@@ -202,3 +208,6 @@ func Jump()->void:
 	var sfx=SFX_JUMP.instantiate()
 	add_child(sfx)
 	velocity.y=-500
+
+func _on_timer_wallace_timeout() -> void:
+	particle_wallace.emitting=false

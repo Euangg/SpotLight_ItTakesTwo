@@ -1,5 +1,4 @@
-class_name Bullet
-extends Area2D
+extends Bullet
 
 const SFX_HIT = preload("res://sfx/sfx_hit.tscn")
 const FIREWORK = preload("res://effect/Firework.tscn")
@@ -30,7 +29,8 @@ func _on_body_entered(body: Player) -> void:
 			player.animation_player.play("hurt")
 			player.hurtNum_+=1
 			player.timerStun.start(stunTime)
-			player.f_=power*velocity.normalized()
+			var buff=1 if player.timer_crab.is_stopped() else 0.5
+			player.f_=power*buff*velocity.normalized()
 			var sfx=SFX_HIT.instantiate()
 			player.add_child(sfx)
 			var blood=FIREWORK.instantiate()

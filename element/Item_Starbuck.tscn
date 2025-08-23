@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcxgexnte32np"]
+
+[ext_resource type="PackedScene" uid="uid://cpkol14o2y30y" path="res://element/Item.tscn" id="1_vcd4y"]
+[ext_resource type="Script" uid="uid://dp70vqc2efw02" path="res://element/item_starbuck.gd" id="2_a23uh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcd4y"]
+
+[node name="Item_Starbuck" instance=ExtResource("1_vcd4y")]
+script = ExtResource("2_a23uh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_vcd4y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_vcd4y")
+
+[node name="Label" type="Label" parent="." index="2"]
+offset_left = -10.0
+offset_top = -24.0
+offset_right = 10.0
+offset_bottom = 4.0
+theme_override_font_sizes/font_size = 20
+text = "星"

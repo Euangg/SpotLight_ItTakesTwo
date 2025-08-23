@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxwc4alhvucjh"]
+
+[ext_resource type="PackedScene" uid="uid://cpkol14o2y30y" path="res://element/Item.tscn" id="1_h2vns"]
+[ext_resource type="Script" uid="uid://7vmrf2wkmrrm" path="res://element/item_crab.gd" id="2_h2vns"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysvp4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2vns"]
+
+[node name="Item_Crab" instance=ExtResource("1_h2vns")]
+script = ExtResource("2_h2vns")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ysvp4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_h2vns")
+
+[node name="Label" type="Label" parent="." index="2"]
+offset_left = -10.0
+offset_top = -24.0
+offset_right = 10.0
+offset_bottom = 4.0
+theme_override_font_sizes/font_size = 20
+text = "蟹"

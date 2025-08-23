@@ -1,8 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://com5pdtauulew"]
+[gd_scene load_steps=14 format=3 uid="uid://com5pdtauulew"]
 
 [ext_resource type="Script" uid="uid://c1ffmpihtx3ss" path="res://element/character.gd" id="1_7ig0a"]
 [ext_resource type="Texture2D" uid="uid://yohpb8t8ub4k" path="res://assets/cha_2.png" id="2_lcuhw"]
 [ext_resource type="AudioStream" uid="uid://ch8et1werall1" path="res://assets/sfx/run.mp3" id="3_lcuhw"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rskv3"]
+particle_flag_disable_z = true
+angle_min = -170.9
+angle_max = 77.7
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 61.15
+initial_velocity_max = 61.15
+gravity = Vector3(0, 98, 0)
+scale_max = 5.0
+color = Color(0.98, 0.93492, 0.0784, 0.968627)
+hue_variation_min = -0.05
+hue_variation_max = 0.05
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oolk3"]
 size = Vector2(12, 41)
@@ -158,6 +171,14 @@ hframes = 4
 vframes = 4
 region_rect = Rect2(0, 0, 224, 280)
 
+[node name="Particle_Wallace" type="GPUParticles2D" parent="Graphic"]
+position = Vector2(-6, -16)
+emitting = false
+amount = 100
+lifetime = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rskv3")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -20.5)
 shape = SubResource("RectangleShape2D_oolk3")
@@ -177,3 +198,17 @@ pitch_scale = 3.0
 
 [node name="Marker2D_Blood" type="Marker2D" parent="."]
 position = Vector2(0, -28)
+
+[node name="Timer_Starbuck" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer_Crab" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer_Wallace" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Timer_Wallace" to="." method="_on_timer_wallace_timeout"]

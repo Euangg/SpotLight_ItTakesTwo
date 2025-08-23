@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://drcocixkpd43a"]
+
+[ext_resource type="PackedScene" uid="uid://u3s5gfjw11tg" path="res://element/Bullet/Bullet.tscn" id="1_2mv45"]
+[ext_resource type="Texture2D" uid="uid://crwumpkuykh5v" path="res://assets/white-circle.png" id="2_mytmy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qyqg"]
+size = Vector2(12, 5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cua4m"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+hue_variation_min = -0.02
+hue_variation_max = 0.02
+
+[node name="Bullet_Fork" instance=ExtResource("1_2mv45")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+visible = false
+shape = SubResource("RectangleShape2D_8qyqg")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
+amount = 150
+texture = ExtResource("2_mytmy")
+randomness = 0.1
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_cua4m")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
