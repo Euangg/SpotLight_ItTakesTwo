@@ -19,7 +19,7 @@ func _on_body_entered(body: Node2D) -> void:
 			var player:Player=body
 			player.animation_player.play("hurt")
 			player.hurtNum_+=1
-			player.timer.start(0.2)
-			player.f_=5000*velocity.normalized()
+			player.timer.start(0.15)
+			player.f_=10000*velocity.normalized()
 			var sfx=SFX_HIT.instantiate()
 			player.add_child(sfx)

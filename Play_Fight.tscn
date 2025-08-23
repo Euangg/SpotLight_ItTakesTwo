@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8s0xfakg8lfh"]
+[gd_scene load_steps=10 format=3 uid="uid://c8s0xfakg8lfh"]
 
-[ext_resource type="PackedScene" uid="uid://com5pdtauulew" path="res://Character.tscn" id="1_37kl0"]
-[ext_resource type="Texture2D" uid="uid://byxrtjs4thf1r" path="res://assets/cha_1.png" id="2_8uh7m"]
+[ext_resource type="Script" uid="uid://371lnwlhy6xf" path="res://play_fight.gd" id="1_7dujx"]
+[ext_resource type="PackedScene" uid="uid://com5pdtauulew" path="res://Character.tscn" id="2_d1khv"]
+[ext_resource type="Texture2D" uid="uid://byxrtjs4thf1r" path="res://assets/cha_1.png" id="3_m3yq7"]
+[ext_resource type="Texture2D" uid="uid://dqr52mi8hxwks" path="res://assets/back1.jpg" id="4_nfuok"]
+[ext_resource type="Texture2D" uid="uid://71po1lhj0mks" path="res://assets/back2.png" id="5_pwx5p"]
+[ext_resource type="Texture2D" uid="uid://d0lpqmuvsfd5g" path="res://assets/back3.png" id="6_m7xb4"]
+[ext_resource type="Texture2D" uid="uid://bp0sn3vic2xue" path="res://assets/back4.png" id="7_av466"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
 size = Vector2(487.5, 20)
@@ -9,21 +14,58 @@ size = Vector2(487.5, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uqi0"]
 size = Vector2(40, 778)
 
-[node name="Test" type="Node2D"]
+[node name="Play_Fight" type="Node2D"]
+script = ExtResource("1_7dujx")
 
-[node name="Character" parent="." instance=ExtResource("1_37kl0")]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(480, 270)
+
+[node name="Character" parent="." instance=ExtResource("2_d1khv")]
 position = Vector2(22, 59)
 
 [node name="Sprite2D" parent="Character/Graphic" index="0"]
-texture = ExtResource("2_8uh7m")
+texture = ExtResource("3_m3yq7")
 
-[node name="Character2" parent="." instance=ExtResource("1_37kl0")]
+[node name="Character2" parent="." instance=ExtResource("2_d1khv")]
 position = Vector2(746, 65)
 input_w = &"ui_up"
 input_s = &"ui_down"
 input_a = &"ui_left"
 input_d = &"ui_right"
 input_j = &"num_1"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0.1)
+
+[node name="Back1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(480, 270)
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("4_nfuok")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0.5)
+
+[node name="Back2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(480, 147)
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("5_pwx5p")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0.7)
+
+[node name="Back3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(480, 337)
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("6_m7xb4")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Back4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("7_av466")
+centered = false
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 position = Vector2(498, 46)

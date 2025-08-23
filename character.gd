@@ -21,6 +21,7 @@ var direction_:Direction=Direction.RIGHT:
 		graphic.scale.x=direction_
 var hurtNum_:int=0
 var f_:Vector2=Vector2.ZERO
+var life_:int=3
 @export var input_w:StringName
 @export var input_s:StringName
 @export var input_a:StringName
