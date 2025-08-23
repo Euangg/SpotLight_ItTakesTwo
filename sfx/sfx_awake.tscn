@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://uda3o1o7yl0w"]
+
+[ext_resource type="PackedScene" uid="uid://cqctkb1uuwngy" path="res://sfx/sfx.tscn" id="1_n1m1o"]
+[ext_resource type="AudioStream" uid="uid://dwy3x63odbvh8" path="res://assets/sfx/awake.mp3" id="2_n1m1o"]
+
+[node name="Sfx_Awake" instance=ExtResource("1_n1m1o")]
+stream = ExtResource("2_n1m1o")
+volume_db = 10.0

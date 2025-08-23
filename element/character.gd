@@ -3,6 +3,7 @@ extends CharacterBody2D
 const BULLET = preload("res://element/Bullet.tscn")
 const SFX_SHOOT = preload("res://sfx/sfx_shoot.tscn")
 const SFX_JUMP = preload("res://sfx/sfx_jump.tscn")
+const SFX_AWAKE = preload("res://sfx/sfx_awake.tscn")
 enum State{
 	IDLE,
 	RUN,
@@ -28,6 +29,9 @@ var spawnPos_:Vector2
 var atkCd_:float=0.4
 var atkStunTime_:float=0.15
 var atkPower_:float=10000
+var showGhost:bool=false
+var ghost_timer=0.0
+
 @export var input_w:StringName
 @export var input_s:StringName
 @export var input_a:StringName
@@ -36,12 +40,30 @@ var atkPower_:float=10000
 @export var speedRun:float=200
 
 @onready var graphic: Node2D = $Graphic
+@onready var sprite_2d: Sprite2D = $Graphic/Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timerStun: Timer =$Timer_Stun
 @onready var sfx_run: AudioStreamPlayer2D = $SFX_Run
 
 func _ready() -> void:
 	spawnPos_=global_position
+
+func _process(delta: float) -> void:
+	if showGhost:
+		if ghost_timer<=0:
+			var ghost=Sprite2D.new()
+			ghost.texture=sprite_2d.texture
+			ghost.hframes=sprite_2d.hframes
+			ghost.vframes=sprite_2d.vframes
+			ghost.frame=sprite_2d.frame
+			ghost.global_position=sprite_2d.global_position
+			ghost.flip_h=true if direction_==Direction.LEFT else false
+			ghost.modulate=Color(0.3,0.5,1.0,0.6)
+			get_parent().add_child(ghost)
+			ghost_timer=0.03
+			create_tween().tween_property(ghost,"modulate:a",0.0,0.5).set_ease(Tween.EASE_OUT)
+			create_tween().tween_callback(ghost.queue_free).set_delay(0.5)
+		else:ghost_timer-=delta
 
 func _physics_process(delta: float) -> void:
 	if visible==false:return
@@ -96,6 +118,7 @@ func _physics_process(delta: float) -> void:
 			State.IDLE:
 				animation_player.play("idle")
 				skyJumpNum_=0
+				showGhost=false
 			State.RUN:
 				animation_player.play("run")
 				sfx_run.play()
@@ -140,7 +163,10 @@ func _physics_process(delta: float) -> void:
 				if Input.is_action_just_pressed(input_w):
 					if skyJumpNum_>0:
 						skyJumpNum_=0
-						Jump()
+						var sfx=SFX_AWAKE.instantiate()
+						add_child(sfx)
+						velocity.y=-400
+						showGhost=true
 			State.ATTACK:
 				if isOnFloor&&Input.is_action_just_pressed(input_w):Jump()
 				velocity.x=inputX*speedRun

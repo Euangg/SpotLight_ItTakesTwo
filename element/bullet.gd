@@ -14,8 +14,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	global_position+=velocity*delta
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.visible==false:return
+func _on_body_entered(body: Player) -> void:
+	if body.visible==false||body.showGhost:return
 	if body.get_collision_layer_value(2):
 		if body!=from:
 			queue_free()
