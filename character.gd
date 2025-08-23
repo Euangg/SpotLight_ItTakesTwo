@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 const BULLET = preload("res://Bullet.tscn")
+const SFX_SHOOT = preload("res://sfx/sfx_shoot.tscn")
 enum State{
 	IDLE,
 	RUN,
@@ -25,7 +26,7 @@ var f_:Vector2=Vector2.ZERO
 @export var input_a:StringName
 @export var input_d:StringName
 @export var input_j:StringName
-@export var speedRun:float=100
+@export var speedRun:float=200
 
 @onready var graphic: Node2D = $Graphic
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -94,9 +95,11 @@ func _physics_process(delta: float) -> void:
 				var b=BULLET.instantiate()
 				b.global_position=global_position-Vector2(0,25)
 				b.from=self
-				b.velocity=Vector2.RIGHT*direction_*500
+				b.velocity=Vector2.RIGHT*direction_*800
 				b.scale.x=direction_
 				Global.add_child(b)
+				var sfx=SFX_SHOOT.instantiate()
+				add_child(sfx)
 			State.HURT:pass
 		state_=nextState
 		state_time_=0
@@ -121,8 +124,8 @@ func _physics_process(delta: float) -> void:
 		if not is_zero_approx(inputX):
 			direction_=Direction.LEFT if inputX<0 else Direction.RIGHT
 		
-	if Input.is_action_just_pressed(input_s):set_collision_mask_value(1,0)
-	if Input.is_action_just_released(input_s):set_collision_mask_value(1,1)
+	if Input.is_action_just_pressed(input_s):set_collision_mask_value(4,0)
+	if Input.is_action_just_released(input_s):set_collision_mask_value(4,1)
 	state_time_+=delta
 	velocity.y+=1000*delta
 	move_and_slide()

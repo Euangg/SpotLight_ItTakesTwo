@@ -1,6 +1,8 @@
 class_name Bullet
 extends Area2D
 
+const SFX_HIT = preload("res://sfx/sfx_hit.tscn")
+
 var velocity:Vector2
 var from:Node
 
@@ -19,3 +21,5 @@ func _on_body_entered(body: Node2D) -> void:
 			player.hurtNum_+=1
 			player.timer.start(0.2)
 			player.f_=5000*velocity.normalized()
+			var sfx=SFX_HIT.instantiate()
+			player.add_child(sfx)

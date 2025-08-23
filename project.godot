@@ -21,8 +21,8 @@ Global="*res://Global.tscn"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/size/window_width_override=1920
-window/size/window_height_override=1080
+window/size/window_width_override=1600
+window/size/window_height_override=900
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
@@ -69,6 +69,7 @@ num_1={
 2d_physics/layer_1="Block"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Bullet"
+2d_physics/layer_4="Platform"
 
 [rendering]
 
