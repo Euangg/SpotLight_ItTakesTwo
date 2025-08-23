@@ -1,25 +1,151 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8s0xfakg8lfh"]
+[gd_scene load_steps=18 format=3 uid="uid://c8s0xfakg8lfh"]
 
 [ext_resource type="Script" uid="uid://371lnwlhy6xf" path="res://play_fight.gd" id="1_7dujx"]
-[ext_resource type="PackedScene" uid="uid://com5pdtauulew" path="res://Character.tscn" id="2_d1khv"]
+[ext_resource type="PackedScene" uid="uid://com5pdtauulew" path="res://element/Character.tscn" id="2_d1khv"]
 [ext_resource type="Texture2D" uid="uid://byxrtjs4thf1r" path="res://assets/cha_1.png" id="3_m3yq7"]
 [ext_resource type="Texture2D" uid="uid://daknfaj1ofru4" path="res://assets/back1.png" id="4_d1khv"]
 [ext_resource type="Texture2D" uid="uid://71po1lhj0mks" path="res://assets/back2.png" id="5_pwx5p"]
 [ext_resource type="Texture2D" uid="uid://d0lpqmuvsfd5g" path="res://assets/back3.png" id="6_m7xb4"]
 [ext_resource type="Texture2D" uid="uid://d3d8ec1kw1u0n" path="res://assets/back5.png" id="7_7dujx"]
 [ext_resource type="Texture2D" uid="uid://bp0sn3vic2xue" path="res://assets/back4.png" id="7_av466"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
-size = Vector2(487.5, 20)
+[ext_resource type="PackedScene" uid="uid://c1j6jd15mp6an" path="res://environment/Platform1.tscn" id="9_m7xb4"]
+[ext_resource type="PackedScene" uid="uid://bx4rx7v0oe3uj" path="res://environment/platform1_l.tscn" id="10_av466"]
+[ext_resource type="PackedScene" uid="uid://d3pf3yt5vlr4j" path="res://environment/platform1_m.tscn" id="11_43pud"]
+[ext_resource type="PackedScene" uid="uid://nm6xn3tjwpdn" path="res://environment/platform1_r.tscn" id="12_fdjm4"]
+[ext_resource type="PackedScene" uid="uid://ctacqwspccjes" path="res://environment/platform2.tscn" id="13_fdjm4"]
+[ext_resource type="PackedScene" uid="uid://duh4hacle5ddh" path="res://environment/platform3.tscn" id="14_pdfe6"]
+[ext_resource type="PackedScene" uid="uid://ohag3ugj4f47" path="res://environment/platform4.tscn" id="15_jaaxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uqi0"]
 size = Vector2(40, 778)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1khv"]
+size = Vector2(1054, 275)
 
 [node name="Play_Fight" type="Node2D"]
 script = ExtResource("1_7dujx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(480, 270)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.85, 0.85, 0.85, 1)
+motion_scale = Vector2(1, 0)
+metadata/_edit_lock_ = true
+
+[node name="Back1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(480, 270)
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("4_d1khv")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.7, 0.7, 0.7, 0.627451)
+motion_scale = Vector2(1, 0.1)
+metadata/_edit_lock_ = true
+
+[node name="Back2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(480, 147)
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("5_pwx5p")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.77, 0.77, 0.77, 0.564706)
+motion_scale = Vector2(1, 0.3)
+metadata/_edit_lock_ = true
+
+[node name="Back3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(480, 337)
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("6_m7xb4")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+motion_scale = Vector2(1, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="Back4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("7_av466")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.83, 0.83, 0.83, 1)
+metadata/_edit_lock_ = true
+
+[node name="Back5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+scale = Vector2(0.211687, 0.211682)
+texture = ExtResource("7_7dujx")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer5"]
+offset_top = 540.0
+offset_right = 960.0
+offset_bottom = 1048.0
+color = Color(0.803922, 0.780392, 0.72549, 1)
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Environment"]
+position = Vector2(498, 46)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D5"]
+position = Vector2(-518, 205)
+shape = SubResource("RectangleShape2D_6uqi0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/StaticBody2D5"]
+position = Vector2(482, 231)
+shape = SubResource("RectangleShape2D_6uqi0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment/StaticBody2D5"]
+position = Vector2(482, 231)
+shape = SubResource("RectangleShape2D_6uqi0")
+
+[node name="Platform" parent="Environment" instance=ExtResource("9_m7xb4")]
+position = Vector2(132, 123)
+
+[node name="Platform2" parent="Environment" instance=ExtResource("9_m7xb4")]
+position = Vector2(828, 131)
+
+[node name="Platform3" parent="Environment" instance=ExtResource("9_m7xb4")]
+position = Vector2(481, 197)
+
+[node name="Platform_L" parent="Environment" instance=ExtResource("10_av466")]
+position = Vector2(220, 362)
+
+[node name="Platform_L2" parent="Environment" instance=ExtResource("11_43pud")]
+position = Vector2(354, 362)
+
+[node name="Platform_L3" parent="Environment" instance=ExtResource("11_43pud")]
+position = Vector2(628, 362)
+
+[node name="Platform_L4" parent="Environment" instance=ExtResource("12_fdjm4")]
+position = Vector2(779, 362)
+
+[node name="Platform4" parent="Environment" instance=ExtResource("13_fdjm4")]
+position = Vector2(313, 279)
+
+[node name="Platform5" parent="Environment" instance=ExtResource("13_fdjm4")]
+position = Vector2(716, 279)
+
+[node name="Platform6" parent="Environment" instance=ExtResource("14_pdfe6")]
+position = Vector2(212, 442)
+
+[node name="Platform7" parent="Environment" instance=ExtResource("14_pdfe6")]
+position = Vector2(771, 442)
+
+[node name="Platform8" parent="Environment" instance=ExtResource("15_jaaxt")]
+position = Vector2(489, 537)
+
+[node name="Platform9" parent="Environment" instance=ExtResource("15_jaaxt")]
+position = Vector2(736, 537)
+
+[node name="Platform10" parent="Environment" instance=ExtResource("15_jaaxt")]
+position = Vector2(266, 537)
+
+[node name="NodeAmmo" type="Node2D" parent="."]
 
 [node name="Character" parent="." instance=ExtResource("2_d1khv")]
 position = Vector2(22, 59)
@@ -35,152 +161,14 @@ input_a = &"ui_left"
 input_d = &"ui_right"
 input_j = &"num_1"
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="Area2D_DeadZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color(0.85, 0.85, 0.85, 1)
-motion_scale = Vector2(1, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_DeadZone"]
+position = Vector2(482, 773)
+shape = SubResource("RectangleShape2D_d1khv")
 
-[node name="Back1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(480, 270)
-scale = Vector2(0.211687, 0.211682)
-texture = ExtResource("4_d1khv")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color(0.7, 0.7, 0.7, 0.627451)
-motion_scale = Vector2(1, 0.1)
-
-[node name="Back2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(480, 147)
-scale = Vector2(0.211687, 0.211682)
-texture = ExtResource("5_pwx5p")
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color(0.77, 0.77, 0.77, 0.564706)
-motion_scale = Vector2(1, 0.3)
-
-[node name="Back3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2(480, 337)
-scale = Vector2(0.211687, 0.211682)
-texture = ExtResource("6_m7xb4")
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color(0.7, 0.7, 0.7, 1)
-motion_scale = Vector2(1, 0.5)
-
-[node name="Back4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-scale = Vector2(0.211687, 0.211682)
-texture = ExtResource("7_av466")
-centered = false
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color(0.83, 0.83, 0.83, 1)
-
-[node name="Back5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
-scale = Vector2(0.211687, 0.211682)
-texture = ExtResource("7_7dujx")
-centered = false
-
-[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer5"]
-offset_top = 540.0
-offset_right = 960.0
-offset_bottom = 1048.0
-color = Color(0.803922, 0.780392, 0.72549, 1)
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(498, 46)
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-266, 52)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-289, 230)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(96, 362)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(153, 315)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-173, 141)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(251, 52)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(234, 191)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(351, 149)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-228, 81)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(135, 250)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(225, 400)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-96, 280)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-285, 393)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-340, 333)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(96, 218)
-shape = SubResource("RectangleShape2D_8uh7m")
-one_way_collision = true
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2(498, 46)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
-position = Vector2(-518, 205)
-shape = SubResource("RectangleShape2D_6uqi0")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D5"]
-position = Vector2(482, 231)
-shape = SubResource("RectangleShape2D_6uqi0")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D5"]
-position = Vector2(482, 231)
-shape = SubResource("RectangleShape2D_6uqi0")
+[connection signal="body_entered" from="Area2D_DeadZone" to="." method="_on_area_2d_dead_zone_body_entered"]
 
 [editable path="Character"]

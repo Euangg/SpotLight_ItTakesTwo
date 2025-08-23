@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx4rx7v0oe3uj"]
+
+[ext_resource type="PackedScene" uid="uid://c1j6jd15mp6an" path="res://environment/Platform1.tscn" id="1_lsewk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mswj"]
+size = Vector2(125, 220)
+
+[node name="Platform_L" instance=ExtResource("1_lsewk")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-260, -283)
+region_enabled = true
+region_rect = Rect2(7, 5, 539, 819)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-53, -110)
+shape = SubResource("RectangleShape2D_1mswj")

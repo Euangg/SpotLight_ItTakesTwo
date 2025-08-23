@@ -1,7 +1,8 @@
 class_name Player
 extends CharacterBody2D
-const BULLET = preload("res://Bullet.tscn")
+const BULLET = preload("res://element/Bullet.tscn")
 const SFX_SHOOT = preload("res://sfx/sfx_shoot.tscn")
+const SFX_JUMP = preload("res://sfx/sfx_jump.tscn")
 enum State{
 	IDLE,
 	RUN,
@@ -22,6 +23,7 @@ var direction_:Direction=Direction.RIGHT:
 var hurtNum_:int=0
 var f_:Vector2=Vector2.ZERO
 var life_:int=3
+var spawnPos_:Vector2
 @export var input_w:StringName
 @export var input_s:StringName
 @export var input_a:StringName
@@ -34,7 +36,11 @@ var life_:int=3
 @onready var timer: Timer = $Timer
 @onready var sfx_run: AudioStreamPlayer2D = $SFX_Run
 
+func _ready() -> void:
+	spawnPos_=global_position
+
 func _physics_process(delta: float) -> void:
+	if visible==false:return
 	var isOnFloor=is_on_floor()
 	var inputX=Input.get_axis(input_a,input_d)
 	#1.状态判断
@@ -97,8 +103,8 @@ func _physics_process(delta: float) -> void:
 				b.global_position=global_position-Vector2(0,25)
 				b.from=self
 				b.velocity=Vector2.RIGHT*direction_*800
-				b.scale.x=direction_
-				Global.add_child(b)
+				b.scale.x=b.scale.x*direction_
+				Global.nodeAmmo.add_child(b)
 				var sfx=SFX_SHOOT.instantiate()
 				add_child(sfx)
 			State.HURT:pass
@@ -111,16 +117,16 @@ func _physics_process(delta: float) -> void:
 		match state_:
 			State.IDLE:
 				velocity.x=0
-				if Input.is_action_just_pressed(input_w):velocity.y=-400
+				if Input.is_action_just_pressed(input_w):Jump()
 			State.RUN:
 				velocity.x=inputX*speedRun
-				if Input.is_action_just_pressed(input_w):velocity.y=-400
+				if Input.is_action_just_pressed(input_w):Jump()
 			State.RISE:
 				velocity.x=inputX*speedRun
 			State.FALL:
 				velocity.x=inputX*speedRun
 			State.ATTACK:
-				if isOnFloor&&Input.is_action_just_pressed(input_w):velocity.y=-400
+				if isOnFloor&&Input.is_action_just_pressed(input_w):Jump()
 				velocity.x=inputX*speedRun
 		if not is_zero_approx(inputX):
 			direction_=Direction.LEFT if inputX<0 else Direction.RIGHT
@@ -130,3 +136,8 @@ func _physics_process(delta: float) -> void:
 	state_time_+=delta
 	velocity.y+=1000*delta
 	move_and_slide()
+
+func Jump()->void:
+	var sfx=SFX_JUMP.instantiate()
+	add_child(sfx)
+	velocity.y=-500

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ox4hqmjb7r2q"]
+
+[ext_resource type="PackedScene" uid="uid://cqctkb1uuwngy" path="res://sfx/sfx.tscn" id="1_tl0ge"]
+[ext_resource type="AudioStream" uid="uid://dj4u5fpwpugds" path="res://assets/sfx/jump.mp3" id="2_ijqb3"]
+
+[node name="Sfx_Jump" instance=ExtResource("1_tl0ge")]
+stream = ExtResource("2_ijqb3")
