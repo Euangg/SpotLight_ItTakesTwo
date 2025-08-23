@@ -1,7 +1,5 @@
 class_name Player
 extends CharacterBody2D
-const BULLET_FORK = preload("res://element/Bullet/Bullet_Fork.tscn")
-const SFX_SHOOT = preload("res://sfx/sfx_shoot.tscn")
 const SFX_JUMP = preload("res://sfx/sfx_jump.tscn")
 const SFX_AWAKE = preload("res://sfx/sfx_awake.tscn")
 const CHA_1 = preload("res://assets/cha_1.png")
@@ -15,6 +13,12 @@ enum State{
 	HURT,
 }
 enum Direction{LEFT=-1,RIGHT=1}
+enum Weapon{
+	FORK,
+	POPCORN,
+	SNOW,
+	THIRTEEN
+}
 
 var state_:State=State.IDLE
 var state_time_:float=0
@@ -26,17 +30,38 @@ var direction_:Direction=Direction.RIGHT:
 var hurtNum_:int=0
 var skyJumpNum_:int=0
 var f_:Vector2=Vector2.ZERO
-var life_:int=3
+var life_:int=2
 var spawnPos_:Vector2
-var atkCd_:float=0.4
-var atkStunTime_:float=0.15
-var atkPower_:float=10000
+var atkCd_:float
+var atkStunTime_:float
+var atkPower_:float
 var showGhost:bool=false
 var ghost_timer=0.0
 var ammoModulate=0xffc2c2
 var hitModulate=0xffc2c2
+var damageAccumulate:float=0
 
 @export var id:int=0
+@export var weapon_:Weapon=Weapon.FORK:
+	set(value):
+		weapon_=value
+		match value:
+			Weapon.FORK:
+				atkCd_=0.4
+				atkStunTime_=0.15
+				atkPower_=10000
+			Weapon.POPCORN:
+				atkCd_=0.3
+				atkStunTime_=0.15
+				atkPower_=10000
+			Weapon.SNOW:
+				atkCd_=1.5
+				atkStunTime_=0.15
+				atkPower_=20000
+			Weapon.THIRTEEN:
+				atkCd_=0.5
+				atkStunTime_=0.15
+				atkPower_=20000
 @export var input_w:StringName
 @export var input_s:StringName
 @export var input_a:StringName
@@ -53,6 +78,7 @@ var hitModulate=0xffc2c2
 @onready var timer_starbuck: Timer = $Timer_Starbuck
 @onready var timer_crab: Timer = $Timer_Crab
 @onready var timer_wallace: Timer = $Timer_Wallace
+@onready var timer_invincible: Timer = $Timer_Invincible
 @onready var particle_wallace: GPUParticles2D = $Graphic/Particle_Wallace
 
 func _ready() -> void:
@@ -66,6 +92,7 @@ func _ready() -> void:
 			ammoModulate=0xc2c2ffff
 			hitModulate=0xaaaaffff
 	spawnPos_=global_position
+	weapon_=weapon_
 
 func _process(delta: float) -> void:
 	if showGhost:
@@ -110,10 +137,7 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():nextState=State.IDLE
 			if Input.is_action_just_pressed(input_j):nextState=State.ATTACK
 		State.ATTACK:
-			if animation_player.is_playing():
-				#if Input.is_action_just_pressed(input_j):
-					#animation_player.seek(0)
-				pass
+			if animation_player.is_playing():pass
 			else:
 				if is_on_floor():
 					nextState=State.IDLE
@@ -148,17 +172,14 @@ func _physics_process(delta: float) -> void:
 			State.ATTACK:
 				var buff=1 if timer_starbuck.is_stopped() else 1.3
 				animation_player.play("attack",-1,0.4/atkCd_*buff)
-				var b=BULLET_FORK.instantiate()
-				b.global_position=global_position-Vector2(0,25)
-				b.from=self
-				b.stunTime=atkStunTime_
-				b.power=atkPower_
-				b.velocity=Vector2.RIGHT*direction_*800
-				b.scale.x=b.scale.x*direction_
-				b.modulate=ammoModulate
-				Global.nodeAmmo.add_child(b)
-				var sfx=SFX_SHOOT.instantiate()
-				add_child(sfx)
+				var b:Bullet
+				match weapon_:
+					Weapon.FORK:b=Global.BULLET_FORK.instantiate()
+					Weapon.POPCORN:b=Global.BULLET_POPCORN.instantiate()
+					Weapon.SNOW:b=Global.BULLET_SNOW.instantiate()
+					Weapon.THIRTEEN:b=Global.BULLET_THIRTEEN.instantiate()
+				b.Emit(self)
+				
 			State.HURT:pass
 		state_=nextState
 		state_time_=0

@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://nm6xn3tjwpdn" path="res://environment/platform1_r.tscn" id="12_fdjm4"]
 [ext_resource type="PackedScene" uid="uid://ctacqwspccjes" path="res://environment/platform2.tscn" id="13_fdjm4"]
 [ext_resource type="PackedScene" uid="uid://duh4hacle5ddh" path="res://environment/platform3.tscn" id="14_pdfe6"]
-[ext_resource type="PackedScene" uid="uid://bcxgexnte32np" path="res://element/Item_Starbuck.tscn" id="15_fdjm4"]
+[ext_resource type="PackedScene" uid="uid://bcxgexnte32np" path="res://element/Item/Item_Starbuck.tscn" id="15_fdjm4"]
 [ext_resource type="PackedScene" uid="uid://ohag3ugj4f47" path="res://environment/platform4.tscn" id="15_jaaxt"]
-[ext_resource type="PackedScene" uid="uid://do5cvkfudwnlt" path="res://element/Item_Wallace.tscn" id="16_pdfe6"]
-[ext_resource type="PackedScene" uid="uid://bxwc4alhvucjh" path="res://element/Item_Crab.tscn" id="17_jaaxt"]
+[ext_resource type="PackedScene" uid="uid://do5cvkfudwnlt" path="res://element/Item/Item_Wallace.tscn" id="16_pdfe6"]
+[ext_resource type="PackedScene" uid="uid://bxwc4alhvucjh" path="res://element/Item/Item_Crab.tscn" id="17_jaaxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1khv"]
 size = Vector2(6198, 275)
@@ -132,10 +132,12 @@ position = Vector2(265, 502)
 
 [node name="Character" parent="." instance=ExtResource("2_d1khv")]
 position = Vector2(347, -11)
+weapon_ = 1
 
 [node name="Character2" parent="." instance=ExtResource("2_d1khv")]
 position = Vector2(643, -4)
 id = 1
+weapon_ = 1
 input_w = &"ui_up"
 input_s = &"ui_down"
 input_a = &"ui_left"

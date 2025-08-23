@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://drqaclwh42f1x"]
+
+[ext_resource type="PackedScene" uid="uid://cqctkb1uuwngy" path="res://sfx/sfx.tscn" id="1_wb7my"]
+[ext_resource type="AudioStream" uid="uid://bt5bl8bnsta0q" path="res://assets/sfx/ItemWallace.mp3" id="2_wb7my"]
+
+[node name="Sfx_Wallace" instance=ExtResource("1_wb7my")]
+stream = ExtResource("2_wb7my")
+volume_db = 5.0
+pitch_scale = 1.45

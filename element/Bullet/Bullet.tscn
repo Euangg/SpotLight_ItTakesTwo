@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://u3s5gfjw11tg"]
 
-[ext_resource type="Script" uid="uid://dtkkphi30njcw" path="res://element/Bullet/bullet_fork.gd" id="1_ffrpb"]
+[ext_resource type="Script" uid="uid://b6ckyjb5a03li" path="res://element/Bullet/bullet.gd" id="1_ayd6b"]
 [ext_resource type="Texture2D" uid="uid://4dvn8ekbhgnq" path="res://assets/fork.png" id="2_cua4m"]
 
 [node name="Bullet" type="Area2D"]
 scale = Vector2(3, 3)
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_ffrpb")
+script = ExtResource("1_ayd6b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(34, -0.5)

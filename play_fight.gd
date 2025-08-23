@@ -20,10 +20,12 @@ func _on_area_2d_dead_zone_body_entered(player: Player) -> void:
 	if player.life_<0:
 		player.global_position.y=get_viewport_rect().size.y/2
 		player.visible=false
+		player.showGhost=false
 		var sfx=SFX_DEAD2.instantiate()
 		player.add_child(sfx)
 	else:
 		player.global_position=player.spawnPos_
 		var sfx=SFX_DEAD1.instantiate()
 		player.add_child(sfx)
+		player.damageAccumulate=0
 		

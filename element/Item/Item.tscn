@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpkol14o2y30y"]
 
-[ext_resource type="Script" uid="uid://b0l3epqyqi327" path="res://element/item.gd" id="1_ealn1"]
+[ext_resource type="Script" uid="uid://b0l3epqyqi327" path="res://element/Item/item.gd" id="1_ealn1"]
 
 [node name="Item" type="CharacterBody2D"]
 collision_layer = 0

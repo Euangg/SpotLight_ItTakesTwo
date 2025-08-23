@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://drcocixkpd43a"]
+[gd_scene load_steps=6 format=3 uid="uid://inkgjqvf40jk"]
 
-[ext_resource type="PackedScene" uid="uid://u3s5gfjw11tg" path="res://element/Bullet/Bullet.tscn" id="1_2mv45"]
-[ext_resource type="Texture2D" uid="uid://crwumpkuykh5v" path="res://assets/white-circle.png" id="2_mytmy"]
-[ext_resource type="Script" uid="uid://dtkkphi30njcw" path="res://element/Bullet/bullet_fork.gd" id="2_trhbh"]
+[ext_resource type="PackedScene" uid="uid://u3s5gfjw11tg" path="res://element/Bullet/Bullet.tscn" id="1_a1f8w"]
+[ext_resource type="Script" uid="uid://xjti4cmk7p7n" path="res://element/Bullet/bullet_popcorn.gd" id="2_a1f8w"]
+[ext_resource type="Texture2D" uid="uid://crwumpkuykh5v" path="res://assets/white-circle.png" id="3_spm0d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qyqg"]
 size = Vector2(12, 5)
@@ -16,8 +16,8 @@ scale_max = 2.0
 hue_variation_min = -0.02
 hue_variation_max = 0.02
 
-[node name="Bullet_Fork" instance=ExtResource("1_2mv45")]
-script = ExtResource("2_trhbh")
+[node name="Bullet_Popcorn" instance=ExtResource("1_a1f8w")]
+script = ExtResource("2_a1f8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 visible = false
@@ -25,7 +25,7 @@ shape = SubResource("RectangleShape2D_8qyqg")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
 amount = 150
-texture = ExtResource("2_mytmy")
+texture = ExtResource("3_spm0d")
 randomness = 0.1
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_cua4m")

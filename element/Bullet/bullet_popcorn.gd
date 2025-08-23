@@ -1,15 +1,19 @@
-class_name Bullet_Fork
+class_name Bullet_Popcorn
 extends Bullet
 
 @onready var timer: Timer = $Timer
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+
+func _physics_process(delta: float) -> void:
+	velocity.y+=600*delta
+	global_position+=velocity*delta
 
 func Emit(p:Player):
 	global_position=p.global_position-Vector2(0,25)
 	from=p
 	stunTime=p.atkStunTime_
 	power=p.atkPower_
-	velocity=Vector2.RIGHT*p.direction_*800
+	velocity=Vector2(p.direction_*700,-200)
 	scale.x=scale.x*p.direction_
 	modulate=p.ammoModulate
 	Global.nodeAmmo.add_child(self)
@@ -22,8 +26,8 @@ func HitPlayer(p:Player):
 	timer.start(1)
 	var buff=1 if p.timer_crab.is_stopped() else 0.5
 	var buff2=1+p.damageAccumulate/10
-	HurtPlayer(p,power*buff*buff2*velocity.normalized())
-	
+	var fx=power*buff*buff2*sign(velocity.x)
+	HurtPlayer(p,Vector2(fx,0))
 
 func _on_timer_timeout() -> void:
 	queue_free()

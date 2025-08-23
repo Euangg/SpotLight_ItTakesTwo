@@ -211,4 +211,9 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="Timer_Invincible" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="timeout" from="Timer_Wallace" to="." method="_on_timer_wallace_timeout"]
+[connection signal="timeout" from="Timer_Invincible" to="." method="_on_timer_wallace_timeout"]

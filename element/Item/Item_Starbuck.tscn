@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcxgexnte32np"]
 
-[ext_resource type="PackedScene" uid="uid://cpkol14o2y30y" path="res://element/Item.tscn" id="1_vcd4y"]
-[ext_resource type="Script" uid="uid://dp70vqc2efw02" path="res://element/item_starbuck.gd" id="2_a23uh"]
+[ext_resource type="PackedScene" uid="uid://cpkol14o2y30y" path="res://element/Item/Item.tscn" id="1_vcd4y"]
+[ext_resource type="Script" uid="uid://dp70vqc2efw02" path="res://element/Item/item_starbuck.gd" id="2_a23uh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcd4y"]
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvqrypqngphch"]
+
+[ext_resource type="PackedScene" uid="uid://cqctkb1uuwngy" path="res://sfx/sfx.tscn" id="1_mvpj6"]
+[ext_resource type="AudioStream" uid="uid://c1vp2mj7a1ucw" path="res://assets/sfx/ItemCrab.mp3" id="2_mvpj6"]
+
+[node name="Sfx_Crab" instance=ExtResource("1_mvpj6")]
+stream = ExtResource("2_mvpj6")
+volume_db = 5.0
+pitch_scale = 1.4
