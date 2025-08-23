@@ -33,6 +33,7 @@ var atkStunTime_:float=0.15
 var atkPower_:float=10000
 var showGhost:bool=false
 var ghost_timer=0.0
+var ammoModulate=0xffc2c2
 
 @export var id:int=0
 @export var input_w:StringName
@@ -50,8 +51,12 @@ var ghost_timer=0.0
 
 func _ready() -> void:
 	match id:
-		0:sprite_2d.texture=CHA_1
-		1:sprite_2d.texture=CHA_2
+		0:
+			sprite_2d.texture=CHA_1
+			ammoModulate=0xffc2c2ff
+		1:
+			sprite_2d.texture=CHA_2
+			ammoModulate=0xc2c2ffff
 	spawnPos_=global_position
 
 func _process(delta: float) -> void:
@@ -141,6 +146,7 @@ func _physics_process(delta: float) -> void:
 				b.power=atkPower_
 				b.velocity=Vector2.RIGHT*direction_*800
 				b.scale.x=b.scale.x*direction_
+				b.modulate=ammoModulate
 				Global.nodeAmmo.add_child(b)
 				var sfx=SFX_SHOOT.instantiate()
 				add_child(sfx)
