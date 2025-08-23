@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://ch8et1werall1" path="res://assets/sfx/run.mp3" id="3_lcuhw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oolk3"]
-size = Vector2(12, 43)
+size = Vector2(12, 41)
 
 [sub_resource type="Animation" id="Animation_7ig0a"]
 length = 0.001
@@ -159,7 +159,7 @@ vframes = 4
 region_rect = Rect2(0, 0, 224, 280)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -21.5)
+position = Vector2(0, -20.5)
 shape = SubResource("RectangleShape2D_oolk3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

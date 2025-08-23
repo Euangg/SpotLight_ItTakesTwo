@@ -4,6 +4,8 @@ const BULLET = preload("res://element/Bullet.tscn")
 const SFX_SHOOT = preload("res://sfx/sfx_shoot.tscn")
 const SFX_JUMP = preload("res://sfx/sfx_jump.tscn")
 const SFX_AWAKE = preload("res://sfx/sfx_awake.tscn")
+const CHA_1 = preload("res://assets/cha_1.png")
+const CHA_2 = preload("res://assets/cha_2.png")
 enum State{
 	IDLE,
 	RUN,
@@ -32,6 +34,7 @@ var atkPower_:float=10000
 var showGhost:bool=false
 var ghost_timer=0.0
 
+@export var id:int=0
 @export var input_w:StringName
 @export var input_s:StringName
 @export var input_a:StringName
@@ -46,6 +49,9 @@ var ghost_timer=0.0
 @onready var sfx_run: AudioStreamPlayer2D = $SFX_Run
 
 func _ready() -> void:
+	match id:
+		0:sprite_2d.texture=CHA_1
+		1:sprite_2d.texture=CHA_2
 	spawnPos_=global_position
 
 func _process(delta: float) -> void:
