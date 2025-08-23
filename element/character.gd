@@ -21,6 +21,7 @@ var direction_:Direction=Direction.RIGHT:
 		if not is_node_ready():await ready
 		graphic.scale.x=direction_
 var hurtNum_:int=0
+var skyJumpNum_:int=0
 var f_:Vector2=Vector2.ZERO
 var life_:int=3
 var spawnPos_:Vector2
@@ -77,6 +78,7 @@ func _physics_process(delta: float) -> void:
 					elif velocity.y<0:nextState=State.RISE
 		State.HURT:
 			if timer.is_stopped():
+				skyJumpNum_=1
 				if velocity.y:nextState=State.FALL
 				else :nextState=State.IDLE
 	if hurtNum_>0:
@@ -90,6 +92,7 @@ func _physics_process(delta: float) -> void:
 		match  nextState:
 			State.IDLE:
 				animation_player.play("idle")
+				skyJumpNum_=0
 			State.RUN:
 				animation_player.play("run")
 				sfx_run.play()
@@ -123,8 +126,16 @@ func _physics_process(delta: float) -> void:
 				if Input.is_action_just_pressed(input_w):Jump()
 			State.RISE:
 				velocity.x=inputX*speedRun
+				if Input.is_action_just_pressed(input_w):
+					if skyJumpNum_>0:
+						skyJumpNum_=0
+						Jump()
 			State.FALL:
 				velocity.x=inputX*speedRun
+				if Input.is_action_just_pressed(input_w):
+					if skyJumpNum_>0:
+						skyJumpNum_=0
+						Jump()
 			State.ATTACK:
 				if isOnFloor&&Input.is_action_just_pressed(input_w):Jump()
 				velocity.x=inputX*speedRun
