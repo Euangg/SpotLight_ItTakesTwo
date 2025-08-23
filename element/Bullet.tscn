@@ -12,6 +12,9 @@ particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 2.0
 gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+hue_variation_min = -0.02
+hue_variation_max = 0.02
 
 [node name="Bullet" type="Area2D"]
 scale = Vector2(3, 3)
@@ -31,6 +34,7 @@ texture = ExtResource("2_cua4m")
 amount = 150
 texture = ExtResource("3_8qyqg")
 randomness = 0.1
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_cua4m")
 
 [node name="Timer" type="Timer" parent="."]

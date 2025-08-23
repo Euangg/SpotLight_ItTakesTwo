@@ -6,9 +6,11 @@ const SFX_DEAD2 = preload("res://sfx/sfx_dead2.tscn")
 @onready var character1: Player = $Character
 @onready var character2: Player = $Character2
 @onready var node_ammo: Node2D = $NodeAmmo
+@onready var node_particle: Node2D = $NodeParticle
 
 func _ready() -> void:
 	Global.nodeAmmo=node_ammo
+	Global.nodeParticle=node_particle
 
 func _physics_process(delta: float) -> void:
 	camera.global_position.y=(character1.global_position.y+character2.global_position.y)/2

@@ -147,6 +147,8 @@ position = Vector2(266, 537)
 
 [node name="NodeAmmo" type="Node2D" parent="."]
 
+[node name="NodeParticle" type="Node2D" parent="."]
+
 [node name="Item" parent="." instance=ExtResource("16_pdfe6")]
 position = Vector2(495, 12)
 

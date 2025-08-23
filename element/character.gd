@@ -34,6 +34,7 @@ var atkPower_:float=10000
 var showGhost:bool=false
 var ghost_timer=0.0
 var ammoModulate=0xffc2c2
+var hitModulate=0xffc2c2
 
 @export var id:int=0
 @export var input_w:StringName
@@ -48,15 +49,18 @@ var ammoModulate=0xffc2c2
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timerStun: Timer =$Timer_Stun
 @onready var sfx_run: AudioStreamPlayer2D = $SFX_Run
+@onready var marker_blood: Marker2D = $Marker2D_Blood
 
 func _ready() -> void:
 	match id:
 		0:
 			sprite_2d.texture=CHA_1
 			ammoModulate=0xffc2c2ff
+			hitModulate=0xffaaaaff
 		1:
 			sprite_2d.texture=CHA_2
 			ammoModulate=0xc2c2ffff
+			hitModulate=0xaaaaffff
 	spawnPos_=global_position
 
 func _process(delta: float) -> void:
@@ -169,7 +173,10 @@ func _physics_process(delta: float) -> void:
 				if Input.is_action_just_pressed(input_w):
 					if skyJumpNum_>0:
 						skyJumpNum_=0
-						Jump()
+						var sfx=SFX_AWAKE.instantiate()
+						add_child(sfx)
+						velocity.y=-400
+						showGhost=true
 			State.FALL:
 				velocity.x=inputX*speedRun
 				if Input.is_action_just_pressed(input_w):

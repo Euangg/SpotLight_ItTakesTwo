@@ -2,7 +2,7 @@ class_name Bullet
 extends Area2D
 
 const SFX_HIT = preload("res://sfx/sfx_hit.tscn")
-
+const FIREWORK = preload("res://effect/Firework.tscn")
 var velocity:Vector2
 var from:Player
 var stunTime:float
@@ -33,6 +33,10 @@ func _on_body_entered(body: Player) -> void:
 			player.f_=power*velocity.normalized()
 			var sfx=SFX_HIT.instantiate()
 			player.add_child(sfx)
+			var blood=FIREWORK.instantiate()
+			blood.position=body.marker_blood.global_position
+			blood.modulate=from.hitModulate
+			Global.nodeParticle.add_child(blood)
 
 
 func _on_timer_timeout() -> void:

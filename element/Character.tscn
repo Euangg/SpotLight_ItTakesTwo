@@ -174,3 +174,6 @@ one_shot = true
 stream = ExtResource("3_lcuhw")
 volume_db = 10.0
 pitch_scale = 3.0
+
+[node name="Marker2D_Blood" type="Marker2D" parent="."]
+position = Vector2(0, -28)
