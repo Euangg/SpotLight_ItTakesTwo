@@ -33,6 +33,7 @@ func _ready() -> void:
 	ui_end.process_mode=Node.PROCESS_MODE_WHEN_PAUSED
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("esc"):get_tree().change_scene_to_file("res://Theme.tscn")
 	camera.global_position.y=(character1.global_position.y+character2.global_position.y)/2
 	if node_item.get_child_count()>0:pass
 	else:if timer_item.is_stopped():timer_item.start()
@@ -46,7 +47,15 @@ func _on_area_2d_dead_zone_body_entered(player: Player) -> void:
 		var sfx=SFX_DEAD2.instantiate()
 		player.add_child(sfx)
 		timer_end.start()
-	else:
+		var winner=0
+		match player.id:
+			0:winner=1
+			1:winner=0
+		if Global.lastWin==winner:Global.winTimes+=1
+		else:
+			Global.lastWin=winner
+			Global.winTimes=1
+	else:	
 		player.global_position=player.spawnPos_
 		var sfx=SFX_DEAD1.instantiate()
 		player.add_child(sfx)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c8s0xfakg8lfh"]
+[gd_scene load_steps=20 format=3 uid="uid://c8s0xfakg8lfh"]
 
 [ext_resource type="Script" uid="uid://371lnwlhy6xf" path="res://play_fight.gd" id="1_7dujx"]
 [ext_resource type="PackedScene" uid="uid://com5pdtauulew" path="res://element/Character.tscn" id="2_d1khv"]
@@ -15,7 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://duh4hacle5ddh" path="res://environment/platform3.tscn" id="14_pdfe6"]
 [ext_resource type="AudioStream" uid="uid://b0lgwsvuvgixj" path="res://assets/bgm/fight.mp3" id="15_fdjm4"]
 [ext_resource type="PackedScene" uid="uid://ohag3ugj4f47" path="res://environment/platform4.tscn" id="15_jaaxt"]
+[ext_resource type="Script" uid="uid://cpe0xcsliiel4" path="res://label.gd" id="16_jaaxt"]
 [ext_resource type="PackedScene" uid="uid://lla4o5q4ix12" path="res://element/UI_End.tscn" id="16_pdfe6"]
+[ext_resource type="Script" uid="uid://owda3k5i7ap2" path="res://label_2.gd" id="17_4h7wc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1khv"]
 size = Vector2(6198, 275)
@@ -193,6 +195,22 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 32.0
+offset_top = 14.0
+offset_right = 72.0
+offset_bottom = 34.0
+text = "5连胜"
+script = ExtResource("16_jaaxt")
+
+[node name="Label2" type="Label" parent="UI"]
+offset_left = 893.0
+offset_top = 14.0
+offset_right = 933.0
+offset_bottom = 34.0
+text = "5连胜"
+script = ExtResource("17_4h7wc")
 
 [node name="UiEnd" parent="." instance=ExtResource("16_pdfe6")]
 visible = false

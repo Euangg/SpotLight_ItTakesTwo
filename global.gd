@@ -26,6 +26,9 @@ const EFFECT_TIP = preload("res://effect/Tip.tscn")
 const TEXTURE_CHA1 = preload("res://assets/character/cha_1.png")
 const TEXTURE_CHA2 = preload("res://assets/character/cha_2.png")
 
+var lastWin:int=-1
+var winTimes:int=0
+
 @onready var area_2d: Area2D = $Area2D
 
 var nodeAmmo:Node2D
