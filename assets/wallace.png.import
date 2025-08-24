@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7qj1cvwo0c8u"
-path="res://.godot/imported/platform4.png-ec953c9f7cc315997984ecee0aaecc1e.ctex"
+uid="uid://doqe6gsxxj0mr"
+path="res://.godot/imported/wallace.png-b65419bdc8a56ff21982f500a46e56c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/platform4.png"
-dest_files=["res://.godot/imported/platform4.png-ec953c9f7cc315997984ecee0aaecc1e.ctex"]
+source_file="res://assets/wallace.png"
+dest_files=["res://.godot/imported/wallace.png-b65419bdc8a56ff21982f500a46e56c8.ctex"]
 
 [params]
 

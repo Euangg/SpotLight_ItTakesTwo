@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://duh4hacle5ddh"]
 
 [ext_resource type="PackedScene" uid="uid://c1j6jd15mp6an" path="res://environment/Platform1.tscn" id="1_72y2a"]
-[ext_resource type="Texture2D" uid="uid://eyar0fh6v858" path="res://assets/platform3.png" id="2_72y2a"]
+[ext_resource type="Texture2D" uid="uid://eyar0fh6v858" path="res://assets/environment/platform3.png" id="2_72y2a"]
 
 [node name="Platform3" instance=ExtResource("1_72y2a")]
 

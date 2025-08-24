@@ -13,7 +13,7 @@ func Emit(p:Player):
 	scale.x=scale.x*p.direction_
 	modulate=p.ammoModulate
 	Global.nodeAmmo.add_child(self)
-	var sfx=Global.SFX_SHOOT.instantiate()
+	var sfx=Global.SFX_SHOOT_SNOW.instantiate()
 	p.add_child(sfx)
 	timer.start(0.2)
 	dir=p.direction_

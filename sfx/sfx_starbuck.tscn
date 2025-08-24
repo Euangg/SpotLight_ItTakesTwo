@@ -5,5 +5,5 @@
 
 [node name="Sfx_dead1" instance=ExtResource("1_xmdtq")]
 stream = ExtResource("2_xmdtq")
-volume_db = 5.0
+volume_db = 10.0
 pitch_scale = 1.5

@@ -1,25 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcxgexnte32np"]
+[gd_scene load_steps=5 format=3 uid="uid://bcxgexnte32np"]
 
 [ext_resource type="PackedScene" uid="uid://cpkol14o2y30y" path="res://element/Item/Item.tscn" id="1_vcd4y"]
 [ext_resource type="Script" uid="uid://dp70vqc2efw02" path="res://element/Item/item_starbuck.gd" id="2_a23uh"]
+[ext_resource type="Texture2D" uid="uid://ma6rh3iyd0de" path="res://assets/starbuck.png" id="3_bu477"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcd4y"]
+size = Vector2(20, 27)
 
 [node name="Item_Starbuck" instance=ExtResource("1_vcd4y")]
 script = ExtResource("2_a23uh")
 
+[node name="Starbuck" type="Sprite2D" parent="." index="0"]
+position = Vector2(-3, 22)
+texture = ExtResource("3_bu477")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, -10)
+position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_vcd4y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -10)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_vcd4y")
-
-[node name="Label" type="Label" parent="." index="2"]
-offset_left = -10.0
-offset_top = -24.0
-offset_right = 10.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 20
-text = "星"

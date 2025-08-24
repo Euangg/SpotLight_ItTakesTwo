@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://7gjw54sbf3yv"]
+
+[ext_resource type="PackedScene" uid="uid://cpkol14o2y30y" path="res://element/Item/Item.tscn" id="1_1qbfw"]
+[ext_resource type="Script" uid="uid://ddlk8iid38c7k" path="res://element/Item/item_box.gd" id="2_1qbfw"]
+[ext_resource type="Texture2D" uid="uid://bff6blwf5qctj" path="res://assets/box.png" id="3_1qbfw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aixbt"]
+size = Vector2(34, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_se07x"]
+size = Vector2(32, 35)
+
+[node name="Item_Box" instance=ExtResource("1_1qbfw")]
+script = ExtResource("2_1qbfw")
+
+[node name="Wallace" type="Sprite2D" parent="." index="0"]
+position = Vector2(34, 22)
+texture = ExtResource("3_1qbfw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_aixbt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -17.5)
+shape = SubResource("RectangleShape2D_se07x")

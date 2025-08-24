@@ -1,27 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://do5cvkfudwnlt"]
+[gd_scene load_steps=6 format=3 uid="uid://do5cvkfudwnlt"]
 
 [ext_resource type="PackedScene" uid="uid://cpkol14o2y30y" path="res://element/Item/Item.tscn" id="1_ams4t"]
 [ext_resource type="Script" uid="uid://ylnk0ivajt17" path="res://element/Item/item_wallace.gd" id="2_f87rg"]
+[ext_resource type="Texture2D" uid="uid://doqe6gsxxj0mr" path="res://assets/wallace.png" id="3_26m2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jccbx"]
+size = Vector2(22, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87em7"]
+size = Vector2(22, 29)
 
 [node name="Item_Wallace" instance=ExtResource("1_ams4t")]
 script = ExtResource("2_f87rg")
 
+[node name="Wallace" type="Sprite2D" parent="." index="0"]
+position = Vector2(34, 25)
+texture = ExtResource("3_26m2l")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, -10)
+position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_jccbx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -10)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_87em7")
-
-[node name="Label" type="Label" parent="." index="2"]
-offset_left = -10.0
-offset_top = -24.0
-offset_right = 10.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 20
-text = "华"

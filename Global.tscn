@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://caijbjnahgnq7"]
+[gd_scene load_steps=3 format=3 uid="uid://caijbjnahgnq7"]
 
 [ext_resource type="Script" uid="uid://clnk75wrh8dg2" path="res://global.gd" id="1_4mbhf"]
-[ext_resource type="AudioStream" uid="uid://b0lgwsvuvgixj" path="res://assets/bgm/fight.mp3" id="2_hnvys"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2cxxh"]
 size = Vector2(1152, 648)
@@ -17,9 +16,5 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(576, 324)
 shape = SubResource("RectangleShape2D_2cxxh")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_hnvys")
-autoplay = true
 
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

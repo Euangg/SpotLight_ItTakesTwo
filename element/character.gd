@@ -2,8 +2,6 @@ class_name Player
 extends CharacterBody2D
 const SFX_JUMP = preload("res://sfx/sfx_jump.tscn")
 const SFX_AWAKE = preload("res://sfx/sfx_awake.tscn")
-const CHA_1 = preload("res://assets/cha_1.png")
-const CHA_2 = preload("res://assets/cha_2.png")
 enum State{
 	IDLE,
 	RUN,
@@ -84,11 +82,11 @@ var damageAccumulate:float=0
 func _ready() -> void:
 	match id:
 		0:
-			sprite_2d.texture=CHA_1
+			sprite_2d.texture=Global.TEXTURE_CHA1
 			ammoModulate=0xffc2c2ff
 			hitModulate=0xffaaaaff
 		1:
-			sprite_2d.texture=CHA_2
+			sprite_2d.texture=Global.TEXTURE_CHA2
 			ammoModulate=0xc2c2ffff
 			hitModulate=0xaaaaffff
 	spawnPos_=global_position
@@ -104,7 +102,9 @@ func _process(delta: float) -> void:
 			ghost.frame=sprite_2d.frame
 			ghost.global_position=sprite_2d.global_position
 			ghost.flip_h=true if direction_==Direction.LEFT else false
-			ghost.modulate=Color(0.3,0.5,1.0,0.6)
+			match id:
+				0:ghost.modulate=Color(1.0,0.5,0.3,0.6)
+				1:ghost.modulate=Color(0.3,0.5,1.0,0.6)
 			get_parent().add_child(ghost)
 			ghost_timer=0.03
 			create_tween().tween_property(ghost,"modulate:a",0.0,0.5).set_ease(Tween.EASE_OUT)

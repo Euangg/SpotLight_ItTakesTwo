@@ -17,6 +17,7 @@ hue_variation_min = -0.02
 hue_variation_max = 0.02
 
 [node name="Bullet_Fork" instance=ExtResource("1_2mv45")]
+scale = Vector2(1, 1)
 script = ExtResource("2_trhbh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
@@ -29,6 +30,9 @@ texture = ExtResource("2_mytmy")
 randomness = 0.1
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_cua4m")
+
+[node name="Sprite2D" parent="." index="2"]
+position = Vector2(23, 9)
 
 [node name="Timer" type="Timer" parent="." index="3"]
 
