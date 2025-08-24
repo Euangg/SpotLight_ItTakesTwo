@@ -21,6 +21,7 @@ const SFX_HIT = preload("res://sfx/sfx_hit.tscn")
 const SFX_BOX = preload("res://sfx/sfx_box.tscn")
 
 const EFFECT_FIREWORK = preload("res://effect/Firework.tscn")
+const EFFECT_TIP = preload("res://effect/Tip.tscn")
 
 const TEXTURE_CHA1 = preload("res://assets/character/cha_1.png")
 const TEXTURE_CHA2 = preload("res://assets/character/cha_2.png")
@@ -29,8 +30,3 @@ const TEXTURE_CHA2 = preload("res://assets/character/cha_2.png")
 
 var nodeAmmo:Node2D
 var nodeParticle:Node2D
-
-func _on_area_2d_area_exited(area: Bullet) -> void:
-	if area is Bullet_Fork:area.timer.start(2)
-	if area is Bullet_Popcorn:area.timer.start(2)
-	

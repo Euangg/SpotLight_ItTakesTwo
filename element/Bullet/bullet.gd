@@ -34,4 +34,8 @@ func HurtPlayer(p:Player,f:Vector2):
 	blood.position=p.marker_blood.global_position
 	blood.modulate=from.hitModulate
 	Global.nodeParticle.add_child(blood)
-	
+	var tip=Global.EFFECT_TIP.instantiate()
+	Global.nodeParticle.add_child(tip)
+	tip.SetContent(str(int(p.damageAccumulate)))
+	tip.position=p.global_position
+	tip.modulate=from.hitModulate

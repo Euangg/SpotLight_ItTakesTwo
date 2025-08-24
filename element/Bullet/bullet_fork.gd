@@ -15,6 +15,7 @@ func Emit(p:Player):
 	Global.nodeAmmo.add_child(self)
 	var sfx=Global.SFX_SHOOT.instantiate()
 	p.add_child(sfx)
+	timer.start(5)
 
 func HitPlayer(p:Player):
 	sprite_2d.visible=false
